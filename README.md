@@ -55,8 +55,9 @@ S = {
 
 ## Sample State
 
+Watching Content
 
-
+In this state, the user is actively watching a recommended movie or video. The recommendation system observes the user's behaviour and prepares the next recommendation based on the current interaction.
 
 ---
 
@@ -73,16 +74,13 @@ A = {
 }
 ```
 
-
 ---
 
 ## Sample Action
 
-Write your answer here.
+Recommend Similar Content
 
-A sample action is one action selected from the action space.
-
-
+In this action, the recommendation system suggests content that is similar to what the user is currently watching or has watched previously. This increases the probability of continued engagement.
 
 ---
 
@@ -102,37 +100,72 @@ This means:
 
 > Probability of reaching next state $s'$ after taking action $a$ in current state $s$.
 
+Example
+If the user is Browsing Content and the system recommends a movie:
+80% probability that the user starts watching.
+20% probability that the user continues browsing.
+
+Similarly,
+
+If the user is Watching Content:
+They may like the content.
+They may skip it.
+They may end the session.
 
 ---
 
 ## Reward Function
 
-Write your answer here.
-
-The reward function defines the feedback received by the agent after taking an action.
+The reward function provides feedback based on the user's response to the recommendation.
 
 General form:
 
-$$
-R(s,a,s')
-$$
+R(s,a,s′)
 
+where:
 
+s = Current state
+a = Recommendation made
+s′ = Next state
+Example Rewards
+Transition	Reward
+S0 → S1 (User Starts Browsing)	0
+S1 → S2 (User Watches Recommended Content)	+20
+S2 → S3 (User Likes or Completes Content)	+50
+S2 → S1 (User Skips Recommendation)	−10
+S3 → S2 (User Watches Another Recommendation)	+30
+S2 → S4 (User Ends Session Early)	−20
+S3 → S4 (Session Ends After High Engagement)	+100
 
 ---
 
 ## Graphical Representation
 
-Write your answer here.
+The Markov Decision Process (MDP) for the Netflix/YouTube Recommendation System is represented as a directed graph. Each node represents a user state, and each arrow represents the action taken by the recommendation system. Rewards are assigned based on the user's interaction, and transition probabilities indicate the likelihood of moving to the next state.
 
-Draw the MDP graph.
+![Uploading image.png…]()
 
-The graph should include:
+State Labels
+S0 – New User
+S1 – Browsing Content
+S2 – Watching Content
+S3 – Liked Content
+S4 – Session Ended
+Explanation
+The user starts in S0 (New User) and enters Browsing Content (S1).
+The recommendation system suggests content.
+If the user watches the recommendation, the system moves to Watching Content (S2) with Reward = +20 and Probability = 0.8.
+If the user skips the recommendation, the reward is −10, and the user remains in the browsing state.
+After watching, the user may like or complete the content, moving to S3 with Reward = +50.
+If the user ends the session, the process moves to S4 with a Reward = −20.
+From Liked Content (S3), recommending similar content can bring the user back to Watching Content (S2) with Reward = +30, increasing long-term engagement.
 
-1. States as nodes.
-2. Actions as arrows.
-3. Rewards on transitions.
-4. Transition probabilities if applicable.
+This graph satisfies all the required MDP components:
+
+States as nodes.
+Actions as arrows.
+Rewards on transitions.
+Transition probabilities on each transition.
 
 
 ---
