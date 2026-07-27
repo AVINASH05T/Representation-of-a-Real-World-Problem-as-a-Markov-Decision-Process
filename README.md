@@ -173,28 +173,84 @@ Transition probabilities on each transition.
 
 ## Python Representation
 
-Write your code here.
-
-Use Python dictionaries to represent the MDP.
-
-
 ```python
 # MDP Representation using Python
-# print("Name:       ")
-# print("Register Number:     ")
+
+print("Name: Avinash T")
+print("Register Number: 212223230026")
+
+# States
+states = {
+    "S0": "New User",
+    "S1": "Browsing Content",
+    "S2": "Watching Content",
+    "S3": "Liked Content",
+    "S4": "Session Ended"
+}
+
+# Actions
+actions = {
+    "A1": "Recommend Movie",
+    "A2": "Recommend TV Show",
+    "A3": "Recommend Similar Content",
+    "A4": "Recommend Trending Content",
+    "A5": "Recommend New Release"
+}
+
+# Transition Probabilities
+transition_probabilities = {
+    ("S0", "A1"): {"S1": 1.0},
+    ("S1", "A1"): {"S2": 0.8, "S1": 0.2},
+    ("S2", "A3"): {"S3": 0.7, "S4": 0.3},
+    ("S3", "A3"): {"S2": 0.9, "S4": 0.1}
+}
+
+# Rewards
+rewards = {
+    ("S0", "A1", "S1"): 0,
+    ("S1", "A1", "S2"): 20,
+    ("S1", "A1", "S1"): -10,
+    ("S2", "A3", "S3"): 50,
+    ("S2", "A3", "S4"): -20,
+    ("S3", "A3", "S2"): 30
+}
+
+# Discount Factor
+gamma = 0.9
+
+# Display MDP
+print("\n========== MARKOV DECISION PROCESS ==========")
+
+print("\nStates:")
+for key, value in states.items():
+    print(f"{key} : {value}")
+
+print("\nActions:")
+for key, value in actions.items():
+    print(f"{key} : {value}")
+
+print("\nTransition Probabilities:")
+for key, value in transition_probabilities.items():
+    print(f"{key} --> {value}")
+
+print("\nRewards:")
+for key, value in rewards.items():
+    print(f"{key} : {value}")
+
+print("\nDiscount Factor (γ):", gamma)
 
 ```
 ---
 ## Output
 
-Write your Python output here.
+<img width="985" height="669" alt="image" src="https://github.com/user-attachments/assets/c8503626-4973-4786-8972-f97157e2ceb5" />
 
 
 ---
 
 ## Result
 
-Write your result here.
+The Netflix/YouTube Recommendation System was successfully represented as a Markov Decision Process (MDP) using Python dictionaries. The model defines the states, actions, transition probabilities, rewards, and discount factor, demonstrating how reinforcement learning can be used to optimize recommendations and maximize long-term user engagement.
 
 
 
