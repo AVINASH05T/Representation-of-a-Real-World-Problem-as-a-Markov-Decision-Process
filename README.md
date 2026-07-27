@@ -143,7 +143,8 @@ S3 → S4 (Session Ends After High Engagement)	+100
 
 The Markov Decision Process (MDP) for the Netflix/YouTube Recommendation System is represented as a directed graph. Each node represents a user state, and each arrow represents the action taken by the recommendation system. Rewards are assigned based on the user's interaction, and transition probabilities indicate the likelihood of moving to the next state.
 
-![Uploading image.png…]()
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/d1b668bb-b00c-4e95-9aef-35c310a61036" />
+
 
 State Labels
 S0 – New User
